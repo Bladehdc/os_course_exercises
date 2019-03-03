@@ -77,6 +77,23 @@ SETGATE(intr, 1,2,3,0);
 
 1. 请在ucore中找一段你认为难度适当的AT&T格式X86汇编代码，尝试解释其含义。
 
+.include "defines.h"
+.data
+hello:
+	.string "hello world\n"
+
+.globl	main
+main:
+	movl	$SYS_write,%eax
+	movl	$STDOUT,%ebx
+	movl	$hello,%ecx
+	movl	$12,%edx
+	int	$0x80
+
+ret
+
+通过系统调用输出hello world。
+
 2. (option)请在rcore中找一段你认为难度适当的RV汇编代码，尝试解释其含义。
 
 #### 练习二
